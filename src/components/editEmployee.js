@@ -2,6 +2,9 @@ import e from "cors";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import '../styles/CreateEmp.css'
+
+import leftImage from '../assets/happyEmp.jpg'
 
 export function EditEmployee() {
     let { id } = useParams();//this variable will hold the id of the book to be edited. Has to be done as a function component
@@ -42,9 +45,9 @@ export function EditEmployee() {
         //console.log(editEmployee);
         //will generate a HTTP request with the url + the id 
         axios.put('http://localhost:4000/api/employee/' + id, editEmployee)
-        
+
             .then((res) => {
-               
+
                 console.log(res);
                 //once the operation s susccesseful it will redirect to the read page
                 navigate('/showEmployees')
@@ -53,53 +56,62 @@ export function EditEmployee() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Edit Employee Name: </label>
-                    <input type="text"
-                        className="form-control"
+        <div className='contact'>
+            <div
+                className='leftSide'
+                style={{ backgroundImage: `url(${leftImage})` }}
+
+            ></div>
+            <div className='rightSide'>
+                <h1> Edit an Employee </h1>
+
+                <form onSubmit={handleSubmit}>
+                    <label>Full Name</label>
+                    <input name="name"
+                        placeholder='Enter full name...'
+                        type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Edit Employee Picture: </label>
-                    <input type="text"
-                        className="form-control"
+                    ></input>
 
+                    <label>Employee Photo</label>
+                    <input
+                        placeholder='Paste the link for the photo...'
+                        type="text"
                         value={empPic}
                         onChange={(e) => setPicture(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Edit Employee Address: </label>
-                    <input type="text"
-                        className="form-control"
+                    ></input>
+
+                    <label>Address</label>
+                    <input
+                        placeholder='Please enter employee address...'
+                        type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Edit Employee Address: </label>
-                    <input type="text"
-                        className="form-control"
+                    ></input>
+
+                    <label>Salary</label>
+                    <input
+                        placeholder='Enter employee salary...'
+                        type="text"
                         value={salary}
                         onChange={(e) => setSalary(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Edit Employee Address: </label>
-                    <input type="text"
-                        className="form-control"
+                    ></input>
+
+                    <label>PPS</label>
+                    <input
+                        placeholder='Enter employee PPS number...'
+                        type="text"
                         value={pps}
                         onChange={(e) => setPps(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <input type="submit" value="Edit Employee" className="btn btn-primary" />
-                </div>
-            </form>
+                    ></input>
+
+
+                    <button type='submit'>Submit new details</button>
+                </form>
+            </div>
         </div>
+
+
     )
 }

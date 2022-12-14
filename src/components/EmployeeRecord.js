@@ -6,23 +6,23 @@ import axios from "axios";
 
 export class EmployeeRecord extends React.Component {
     //the function needs to be bided on the constructor
-    constructor(){
+    constructor() {
         super();
         this.DeleteEmployee = this.DeleteEmployee.bind(this);
     }
 
     // function to delete - this is an event that is going to send a request to my server
-    DeleteEmployee(e){
+    DeleteEmployee(e) {
         e.preventDefault();
         console.log("delete button clicked");
-        
+
         //dont't forget to add the back slash at the end of the url  and _ before id and its not books its book/
         axios.delete('http://localhost:4000/api/employee/' + this.props.employee._id)
-        .then((res)=>{
-            //this function will refresh the page after delete is clicked
-            this.props.ReloadData(); //call from grand parent read.js than to the parent book
-        })
-        .catch();
+            .then((res) => {
+                //this function will refresh the page after delete is clicked
+                this.props.ReloadData(); //call from grand parent read.js than to the parent book
+            })
+            .catch();
 
 
     }
@@ -41,11 +41,12 @@ export class EmployeeRecord extends React.Component {
                 <Card.Body>
                     <blockquote>
                         <img src={this.props.employee.empPic} width="200" height="200"></img>
-                        <footer>
-                            {this.props.employee.salary}
-                            {this.props.employee.address}
-                            {this.props.employee.pps}
-                        </footer>
+                        <footer>Address: {this.props.employee.address}    </footer>
+                        <footer>PPS: {this.props.employee.pps}</footer>
+                        <footer>Salary: {this.props.employee.salary}</footer>
+                        
+                       
+
                     </blockquote>
                 </Card.Body>
 

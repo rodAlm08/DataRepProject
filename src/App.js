@@ -1,9 +1,16 @@
 import React from 'react';
-import './App.css';
-import { Home } from './components/home';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+//importing routing to the application. It will allow to change the url
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import { Home } from './components/Home';
 import { CreateEmployee } from './components/createEmployee';
 import { EditEmployee } from './components/editEmployee';
-import { ShowEmployee } from './components/showEmployees';
+import { ShowEmployee } from './components/EmployeeList';
 
 
 //imports to be used in the navigation bar
@@ -13,15 +20,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 
-//importing routing to the application. It will allow to change the url
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes
-} from "react-router-dom";
-
-
-
 
 class App extends React.Component {
   render() {//render is what will displayed 
@@ -29,23 +27,10 @@ class App extends React.Component {
     return (
       //include router encapsulate the lot inside Router
       //adding the navigation bar inside div    
+      <div className="App">
+        <Router>
 
-      <Router>
-
-        <div className="App">
-
-          {/* the nav bar changes the url for the application*/}
-          <Navbar bg="primary" variant="dark">
-            <Container>
-              <Navbar.Brand href="/"></Navbar.Brand>
-              <Nav className="me-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/showEmployees">Show Employees</Nav.Link>
-                <Nav.Link href="/createEmployee">Create Employee</Nav.Link>
-
-              </Nav>
-            </Container>
-          </Navbar>
+          <NavBar />
 
           {/* Routes is where we are going to show a different component*/}
           <Routes>
@@ -55,8 +40,11 @@ class App extends React.Component {
             <Route path='/edit/:id' element={<EditEmployee />}></Route>
 
           </Routes>
-        </div>
-      </Router>
+          <Footer />
+
+
+        </Router>
+      </div>
     );
   }
 }

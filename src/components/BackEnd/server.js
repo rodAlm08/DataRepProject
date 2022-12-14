@@ -15,7 +15,7 @@ async function main() {
   //connection string from our cloud mongodb database will tell exaclty where to connect
   //username admin
   //my password is admin
-  await mongoose.connect('mongodb+srv://admin:admin@cluster0.qaq4ckt.mongodb.net/?retryWrites=true&w=majority');
+  await mongoose.connect('mongodb+srv://admin:admin@cluster0.qaq4ckt.mongodb.net/employees?retryWrites=true&w=majority');
 
 }
 

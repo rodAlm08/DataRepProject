@@ -1,6 +1,8 @@
 import React from "react";
-
 import { Employees } from "./employees";
+import '../styles/Menu.css'
+
+
 import axios from "axios";// axios is a Promise based HTTP client
 
 //this component will be exported to be imported in App.js
@@ -8,7 +10,7 @@ import axios from "axios";// axios is a Promise based HTTP client
 export class ShowEmployee extends React.Component {
 
     //needs to bind the reloaddata into the constructor
-    constructor(){
+    constructor() {
         super();
         this.ReloadData = this.ReloadData.bind(this);
     }
@@ -18,8 +20,11 @@ export class ShowEmployee extends React.Component {
         axios.get('http://localhost:4000/api/employees')
             //call back function
             .then((response) => {
+                console.log(response.data);
                 this.setState({
+                   
                     employees: response.data
+                    
                 })
 
             })
@@ -60,15 +65,14 @@ export class ShowEmployee extends React.Component {
     //book will be embeded
     render() {
         return (
-            <div>
-                {/* in render this is sending it to books (got to books and loadit there From parent to child) */}
-            
-                <Employees employees={this.state.employees} ReloadData={this.ReloadData}></Employees>
+            <div className="menu">
+                <h1 className="menuTitle">Our Employees</h1>
+                <div className="menuList">
+                    {/* in render this is sending it to books (got to books and loadit there From parent to child) */}
+                    <Employees employees={this.state.employees} ReloadData={this.ReloadData}></Employees>
 
+                </div>
             </div>
-
-
-
         );
     }
 
