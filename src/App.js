@@ -11,6 +11,7 @@ import { Home } from './components/Home';
 import { CreateEmployee } from './components/createEmployee';
 import { EditEmployee } from './components/editEmployee';
 import { ShowEmployee } from './components/EmployeeList';
+import { SearchEmployee } from './components/SearchEmployee';
 
 
 //imports to be used in the navigation bar
@@ -38,6 +39,7 @@ class App extends React.Component {
             <Route path='/showEmployees' element={<ShowEmployee />}></Route>
             <Route path='/createEmployee' element={<CreateEmployee />}></Route>
             <Route path='/edit/:id' element={<EditEmployee />}></Route>
+            <Route path='/searchEmployee' element={<SearchEmployee />}></Route>
 
           </Routes>
           <Footer />

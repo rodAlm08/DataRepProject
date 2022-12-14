@@ -1,141 +1,94 @@
 import React from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { Button } from "react-bootstrap";
+import { Employees } from "./employees";
+import '../styles/Menu.css'
 
-const { SearchBar } = Search;
 
-let nameFilter;
-let priceFilter;
-let stockFilter;
-let originFilter;
+import axios from "axios";// axios is a Promise based HTTP client
 
-const ClearButton = props => {
-    const handleClick = () => {
-        props.onSearch("");
-        props.clearAllFilter();
-    };
-    return (
-        <Button
-            variant="secondary"
-            onClick={handleClick}
-            style={{
-                fontSize: "16px",
-                padding: "5px",
-                margin: "10px",
-                height: "40px"
-            }}
-        >
-            Clear
-        </Button>
-    );
-};
+//this component will be exported to be imported in App.js
+//React.component is class that has all the functionality to create components 
+export class SearchEmployee extends React.Component {
 
-class Table extends React.Component {
-    columns = [
-        {
-            dataField: "name",
-            text: "Product Name",
-            filter: textFilter({
-                getFilter: filter => {
-                    nameFilter = filter;
-                }
+    //needs to bind the reloaddata into the constructor
+    constructor() {
+        super();
+        this.ReloadData = this.ReloadData.bind(this);
+    }
+    //when my componentes become visible what I want to do
+    componentDidMount() {
+        //axios make a http request and get back a response
+        axios.get('http://localhost:4000/api/employees')
+            //call back function
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+
+                    employees: response.data
+
+                })
+
             })
-        },
-        {
-            dataField: "price",
-            text: "Price",
-            filter: textFilter({
-                getFilter: filter => {
-                    priceFilter = filter;
-                }
-            }),
-            sort: true
-        },
-        {
-            dataField: "stock",
-            text: "Stock",
-            filter: textFilter({
-                getFilter: filter => {
-                    stockFilter = filter;
-                }
-            })
-        },
-        {
-            dataField: "origin",
-            text: "Origin",
-            filter: textFilter({
-                getFilter: filter => {
-                    originFilter = filter;
-                }
-            })
-        }
-    ];
+            //in case thinks goes wrong
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    // exaclty the same functionality as componetDidMount
+    //it will be called to redraw the components after the delete button is clicked
+    //and the book is deleted from the database
+    ReloadData() {
+        //axios make a http request and get back a response
+        axios.get('http://localhost:4000/api/employees')
+            //call back function
+            .then((response) => {
+                this.setState({
+                    employees: response.data
+                })
 
-    clearAllFilter() {
-        nameFilter("");
-        priceFilter("");
-        originFilter("");
-        stockFilter("");
+            })
+            //in case thinks goes wrong
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
-    products = [
-        {
-            name: "apple",
-            price: 100,
-            stock: 10,
-            origin: "japan"
-        },
-        {
-            name: "orange",
-            price: 150,
-            stock: 35,
-            origin: "spain"
-        },
-        {
-            name: "pineapple",
-            price: 300,
-            stock: 4,
-            origin: "america"
-        }
-    ];
+    /* This state can be modified based on user action or other action. when a component
+    state is changed React will re-render the component to the browser. Pass this read
+    components state to the new books component */
+    //create a state object and associate with array of books
+    state = {
+        employees: [
 
+        ]
+    }
+
+    //book will be embeded
     render() {
         return (
-            <div>
-                <h1>Clear search bar and filter</h1>
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="name"
-                    data={this.products}
-                    columns={this.columns}
-                    search
-                >
-                    {props => (
-                        <div>
-                            <SearchBar
-                                {...props.searchProps}
-                                style={{ width: "400px", height: "40px" }}
-                            />
-                            <ClearButton
-                                {...props.searchProps}
-                                clearAllFilter={this.clearAllFilter}
-                            />
-                            <BootstrapTable
-                                {...props.baseProps}
-                                filter={filterFactory()}
-                                noDataIndication="There is no solution"
-                                striped
-                                hover
-                                condensed
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
+
+
+
+            <div className="menu">
+                <div>
+                    <form>
+                        
+                        <input
+                            type='text'
+                            placeholder="Search employee by Name"
+                            className="form-control"
+                        ></input>
+                    </form>
+                </div>
+
+
+             
+                <div className="menuList">
+                    {/* in render this is sending it to books (got to books and loadit there From parent to child) */}
+                    <Employees employees={this.state.employees} ReloadData={this.ReloadData}></Employees>
+
+                </div>
             </div>
         );
     }
-}
 
-export default Table;
+}
