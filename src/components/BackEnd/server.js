@@ -19,7 +19,7 @@ async function main() {
 
 }
 
-//create the book schema that will contain title, cover and author all in STRING type
+//create the employee schema that will contain title, cover and author all in STRING type
 const employeeSchema = new mongoose.Schema({
   name: String,
   empPic: String,
@@ -70,7 +70,7 @@ app.get('/api/employees', (req, res) => {
 
 //post will put the data embeded body
 //is a more secure way to send secure data over the web as it wont be displayed on the url
-//if we dont do the post to listen to the request from /api/books on the server side will get error 404
+//if we dont do the post to listen to the request from /api/employees on the server side will get error 404
 app.post('/api/employees', (req, res) => {
   //console.log(req.body)
   //instead of console the data we will write it to my mongodb database
@@ -83,7 +83,8 @@ app.post('/api/employees', (req, res) => {
     salary: req.body.salary,
     pps: req.body.pps
 
-  })
+  }).then(() => { res.status(201).send('Data Received') })
+    .catch((error) => { res.status(500).send(error) })
 
   res.send('Data received');
 
@@ -104,13 +105,22 @@ app.put('/api/employee/:id', (req, res) => {
 
 //will pass the id on the url : means that is a paramater I am passing up
 app.get('/api/employee/:id', (req, res) => {
-  console.log(req.params.id);
+  //console.log(req.params.id);
 
   //to search in database. FInd a document with the following id that was passed on the url
   //I don't have the front setup for this
-  //to check go to localhost:4000/api/book/ and paste the id
+  //to check go to localhost:4000/api/employees/ and paste the id
   employeeModel.findById(req.params.id, (error, data) => {
     res.json(data);
+  })
+})
+
+
+app.get('/api/employee/search/:name', (req, res) => {
+  console.log(req.body.name);
+  employeeModel.find({ name: req.body.name}, (error, data) => {
+    res.json(data);
+    console.log(data);
   })
 })
 

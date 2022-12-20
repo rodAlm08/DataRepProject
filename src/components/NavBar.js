@@ -20,14 +20,14 @@ function NavBar() {
                     <Link to='/'>Home</Link>
                     <Link to='/showEmployees'>Show Employees</Link>
                     <Link to='/createEmployee'>Create Employee</Link>
-                    <Link to='/searchEmployee'>Search Employee</Link>
+                    <Link to='/search'>Search Employee</Link>
                 </div>
             </div>
             <div className='rightSide'>
                 <Link to='/'>Home</Link>
                 <Link to='/showEmployees'>Show Employees</Link>
                 <Link to='/createEmployee'>Create Employee</Link>
-                <Link to='/searchEmployee'>Search Employee</Link>
+                <Link to='/search'>Search Employee</Link>
                 <button onClick={toggleNavBar}>
                     <ReorderIcon />
                 </button>

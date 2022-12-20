@@ -11,16 +11,12 @@ import { Home } from './components/Home';
 import { CreateEmployee } from './components/createEmployee';
 import { EditEmployee } from './components/editEmployee';
 import { ShowEmployee } from './components/EmployeeList';
-import { SearchEmployee } from './components/SearchEmployee';
-
+import { SearchEmployee } from './components/Search';
 
 //imports to be used in the navigation bar
 //bootstrap has a big library of buttons/nav bars, etc
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-
+import Search from "./components/Search";
 
 class App extends React.Component {
   render() {//render is what will displayed 
@@ -39,9 +35,10 @@ class App extends React.Component {
             <Route path='/showEmployees' element={<ShowEmployee />}></Route>
             <Route path='/createEmployee' element={<CreateEmployee />}></Route>
             <Route path='/edit/:id' element={<EditEmployee />}></Route>
-            <Route path='/searchEmployee' element={<SearchEmployee />}></Route>
+            <Route path='/search' element={<Search />}></Route> 
 
           </Routes>
+
           <Footer />
 
 

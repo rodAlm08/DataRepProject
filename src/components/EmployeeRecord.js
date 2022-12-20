@@ -16,11 +16,11 @@ export class EmployeeRecord extends React.Component {
         e.preventDefault();
         console.log("delete button clicked");
 
-        //dont't forget to add the back slash at the end of the url  and _ before id and its not books its book/
+        //dont't forget to add the back slash at the end of the url  and _ before id and its not employees its employee/
         axios.delete('http://localhost:4000/api/employee/' + this.props.employee._id)
             .then((res) => {
                 //this function will refresh the page after delete is clicked
-                this.props.ReloadData(); //call from grand parent read.js than to the parent book
+                this.props.ReloadData(); //call from grand parent read.js than to the parent employee
             })
             .catch();
 
@@ -31,9 +31,9 @@ export class EmployeeRecord extends React.Component {
         return (
 
             /**
-             * The BookItems component displays information about a single book
+             * The Employee Record component displays information about a single employee
              * The information to displayed is passed down from the Read component via the 
-             * Books component to individual BookItem components. 
+             * Employees component to individual Employee Record components. 
              * 
              */
             <Card>
@@ -50,7 +50,7 @@ export class EmployeeRecord extends React.Component {
                     </blockquote>
                 </Card.Body>
 
-                {/* Link will load the id of the book into the url whan edit is clicked */}
+                {/* Link will load the id of the employee into the url when edit is clicked */}
                 <Link to={'/edit/' + this.props.employee._id} className="btn btn-primary">Edit</Link>
                 <Button variant='danger' onClick={this.DeleteEmployee}>Delete</Button>
             </Card>

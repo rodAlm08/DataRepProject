@@ -19,7 +19,7 @@ export class CreateEmployee extends React.Component {
     //you should bind the events otherwise won't work
     constructor() {
         super();
-
+        //IMPLEMENT METHODS ON THE CONSTRUCTOR
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChangeEmpName = this.onChangeEmpName.bind(this);
         this.onChangeEmpPic = this.onChangeEmpPic.bind(this);
@@ -29,7 +29,7 @@ export class CreateEmployee extends React.Component {
 
 
         /*
-               state object contains a single property that is an array of books with 3 entries
+               state object contains a single property that is an array
            */
         this.state = {
             name: '',
@@ -40,6 +40,8 @@ export class CreateEmployee extends React.Component {
 
         }
     }
+
+    
 
     //will take an event wheni t get envoked
     handleSubmit(e) {
@@ -61,7 +63,7 @@ export class CreateEmployee extends React.Component {
 
         }
 
-        //use axios to generata a http request and we passe up book
+        //use axios to generata a http request and we passe up employee
         //this has to be employeesssssss plural
         axios.post('http://localhost:4000/api/employees', employee)
             .then((res) => {
@@ -81,6 +83,8 @@ export class CreateEmployee extends React.Component {
 
     }
 
+
+    // onChange()
     //method to update the state
     onChangeEmpName(e) {
         this.setState({
@@ -115,6 +119,8 @@ export class CreateEmployee extends React.Component {
     }
 
 
+
+
     render() {
         return (
 
@@ -122,7 +128,7 @@ export class CreateEmployee extends React.Component {
                 <div
                     className='leftSide'
                     style={{ backgroundImage: `url(${leftImage})` }}
-                  
+
                 ></div>
                 <div className='rightSide'>
                     <h1> Create an Employee </h1>
@@ -143,6 +149,7 @@ export class CreateEmployee extends React.Component {
                             value={this.state.empPic}
                             onChange={this.onChangeEmpPic}
                         ></input>
+
 
                         <label>Address</label>
                         <input

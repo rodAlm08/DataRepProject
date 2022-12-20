@@ -7,7 +7,7 @@ import '../styles/CreateEmp.css'
 import leftImage from '../assets/happyEmp.jpg'
 
 export function EditEmployee() {
-    let { id } = useParams();//this variable will hold the id of the book to be edited. Has to be done as a function component
+    let { id } = useParams();//this variable will hold the id of the employee to be edited. Has to be done as a function component
     //as new version only allows functions
     const [name, setName] = useState('');
     const [empPic, setPicture] = useState('');

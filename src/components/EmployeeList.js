@@ -35,7 +35,7 @@ export class ShowEmployee extends React.Component {
     }
     // exaclty the same functionality as componetDidMount
     //it will be called to redraw the components after the delete button is clicked
-    //and the book is deleted from the database
+    //and the employee is deleted from the database
     ReloadData() {
         //axios make a http request and get back a response
         axios.get('http://localhost:4000/api/employees')
@@ -54,21 +54,21 @@ export class ShowEmployee extends React.Component {
 
     /* This state can be modified based on user action or other action. when a component
     state is changed React will re-render the component to the browser. Pass this read
-    components state to the new books component */
-    //create a state object and associate with array of books
+    components state to the new employee component */
+    //create a state object and associate with array
     state = {
         employees: [
 
         ]
     }
 
-    //book will be embeded
+    //employee will be embeded
     render() {
         return (
             <div className="menu">
                 <h1 className="menuTitle">Our Employees</h1>
                 <div className="menuList">
-                    {/* in render this is sending it to books (got to books and loadit there From parent to child) */}
+                    {/* in render this is sending it to employees (got to employeess and loadit there From parent to child) */}
                     <Employees employees={this.state.employees} ReloadData={this.ReloadData}></Employees>
 
                 </div>
