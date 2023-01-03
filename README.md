@@ -15,10 +15,6 @@ Inside BackEnd directory open integrated terminal and run command:
 ### To view the application
 On your browser type: http://localhost:4000/
 
-<<<<<<< HEAD
-Click on the link to access the Wiki:
-https://github.com/rodAlm08/DataRepProject/wiki
-=======
 ### Click on the link to access the Wiki:
 https://github.com/rodAlm08/DataRepProject/wiki
->>>>>>> 01fb3a5 (Wiki added)
+
