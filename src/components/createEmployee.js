@@ -2,18 +2,10 @@
 import React from 'react';
 import axios from 'axios';
 import '../styles/CreateEmp.css'
-
 import leftImage from '../assets/happyEmp.jpg'
-import { Navigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-
-import { useNavigate } from "react-router-dom";
-
 
 //this component will be exported to be imported in App.js
 //React.component is class that has all the functionality to create components 
-
-
 export class CreateEmployee extends React.Component {
 
     //you should bind the events otherwise won't work
@@ -26,8 +18,6 @@ export class CreateEmployee extends React.Component {
         this.onChangeEmpAddress = this.onChangeEmpAddress.bind(this);
         this.onChangeSalary = this.onChangeSalary.bind(this);
         this.onChangePps = this.onChangePps.bind(this);
-
-
         /*
                state object contains a single property that is an array
            */
@@ -37,11 +27,8 @@ export class CreateEmployee extends React.Component {
             address: '',
             salary: '',
             pps: ''
-
         }
     }
-
-    
 
     //will take an event wheni t get envoked
     handleSubmit(e) {
@@ -60,7 +47,6 @@ export class CreateEmployee extends React.Component {
             address: this.state.address,
             salary: this.state.salary,
             pps: this.state.pps
-
         }
 
         //use axios to generata a http request and we passe up employee
@@ -69,8 +55,9 @@ export class CreateEmployee extends React.Component {
             .then((res) => {
                 window.location = "/showEmployees"
             })
-            .catch();
-
+            .catch(function (error) {
+                console.log(error);
+            });
 
         this.setState({
             name: '',
@@ -78,12 +65,8 @@ export class CreateEmployee extends React.Component {
             address: '',
             salary: '',
             pps: ''
-
         })
-
     }
-
-
     // onChange()
     //method to update the state
     onChangeEmpName(e) {
@@ -91,48 +74,38 @@ export class CreateEmployee extends React.Component {
             name: e.target.value
         })
     }
-
     //method to update the state
     onChangeEmpPic(e) {
         this.setState({
             empPic: e.target.value
         })
     }
-
     //method to update the state
     onChangeEmpAddress(e) {
         this.setState({
             address: e.target.value
         })
     }
-
     onChangeSalary(e) {
         this.setState({
             salary: e.target.value
         })
     }
-
     onChangePps(e) {
         this.setState({
             pps: e.target.value
         })
     }
 
-
-
-
     render() {
         return (
-
             <div className='contact'>
                 <div
                     className='leftSide'
                     style={{ backgroundImage: `url(${leftImage})` }}
-
                 ></div>
                 <div className='rightSide'>
                     <h1> Create an Employee </h1>
-
                     <form onSubmit={this.handleSubmit}>
                         <label>Full Name</label>
                         <input name="name"
@@ -149,7 +122,6 @@ export class CreateEmployee extends React.Component {
                             value={this.state.empPic}
                             onChange={this.onChangeEmpPic}
                         ></input>
-
 
                         <label>Address</label>
                         <input
@@ -174,15 +146,10 @@ export class CreateEmployee extends React.Component {
                             value={this.state.pps}
                             onChange={this.onChangePps}
                         ></input>
-
-
                         <button type='submit'>Add Employee</button>
                     </form>
                 </div>
             </div>
-
-
-
         );
     }
 }

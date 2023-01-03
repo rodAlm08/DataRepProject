@@ -5,7 +5,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import '../styles/Footer.css'
 
-
 function Footer() {
     return (
         <div className='footer'>
@@ -15,9 +14,8 @@ function Footer() {
                 <FacebookIcon/>
                 <LinkedInIcon/>
             </div>
-            <p> &copy; 2022 atu.com/RodrigoAlmeidaG00377123</p>
+            <p> &copy; 2022/2023 atu.com/RodrigoAlmeidaG00377123</p>
         </div>
     )
 }
-
 export default Footer

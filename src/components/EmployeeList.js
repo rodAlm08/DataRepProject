@@ -1,8 +1,6 @@
 import React from "react";
 import { Employees } from "./employees";
 import '../styles/Menu.css'
-
-
 import axios from "axios";// axios is a Promise based HTTP client
 
 //this component will be exported to be imported in App.js
@@ -22,11 +20,8 @@ export class ShowEmployee extends React.Component {
             .then((response) => {
                 console.log(response.data);
                 this.setState({
-                   
                     employees: response.data
-                    
                 })
-
             })
             //in case thinks goes wrong
             .catch(function (error) {
@@ -44,7 +39,6 @@ export class ShowEmployee extends React.Component {
                 this.setState({
                     employees: response.data
                 })
-
             })
             //in case thinks goes wrong
             .catch(function (error) {
@@ -57,9 +51,7 @@ export class ShowEmployee extends React.Component {
     components state to the new employee component */
     //create a state object and associate with array
     state = {
-        employees: [
-
-        ]
+        employees: []
     }
 
     //employee will be embeded
@@ -70,10 +62,8 @@ export class ShowEmployee extends React.Component {
                 <div className="menuList">
                     {/* in render this is sending it to employees (got to employeess and loadit there From parent to child) */}
                     <Employees employees={this.state.employees} ReloadData={this.ReloadData}></Employees>
-
                 </div>
             </div>
         );
     }
-
 }

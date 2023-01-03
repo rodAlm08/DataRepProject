@@ -20,32 +20,24 @@ import Search from "./components/Search";
 
 class App extends React.Component {
   render() {//render is what will displayed 
-
     return (
       //include router encapsulate the lot inside Router
       //adding the navigation bar inside div    
       <div className="App">
         <Router>
-
           <NavBar />
-
           {/* Routes is where we are going to show a different component*/}
           <Routes>
             <Route path='/' exact element={<Home />}></Route>
             <Route path='/showEmployees' element={<ShowEmployee />}></Route>
             <Route path='/createEmployee' element={<CreateEmployee />}></Route>
             <Route path='/edit/:id' element={<EditEmployee />}></Route>
-            <Route path='/search' element={<Search />}></Route> 
-
+            <Route path='/search' element={<Search />}></Route>
           </Routes>
-
           <Footer />
-
-
         </Router>
       </div>
     );
   }
 }
-
 export default App;

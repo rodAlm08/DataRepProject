@@ -16,9 +16,7 @@ class Search extends React.Component {
 
     //this method will fetch the data from my api
     fetchSearchResults = (query) => {
-        
-        const searchUrl = `http://localhost:4000/api/employee/${query}`;  
-
+        const searchUrl = `http://localhost:4000/api/employee/${query}`;
         //const searchUrl = `http://localhost:4000/api/employee/search/${query}`;  
         console.log("fetch " + searchUrl)
         if (this.cancel) {
@@ -28,22 +26,22 @@ class Search extends React.Component {
         // Create a new CancelToken
         this.cancel = axios.CancelToken.source(); //use cancel toke from axios to cancel the the request
         axios.get(searchUrl, {
-                cancelToken: this.cancel.token
-            })
+            cancelToken: this.cancel.token
+        })
             .then((res) => {
-               // console.log(res.data)
+                // console.log(res.data)
                 const resultNotFoundMsg = !res.data.length
                     ? 'There are no more search results. Please try a new search.'
                     : '';
-                    //set state with data into results
+                //set state with data into results
                 this.setState({
                     results: res.data,
-                    message: resultNotFoundMsg                   
+                    message: resultNotFoundMsg
                 });
             })
             .catch((error) => {
                 if (axios.isCancel(error) || error) {
-                    this.setState({                    
+                    this.setState({
                         message: 'Failed to fetch results. Please check network',
                     });
                 }
@@ -57,7 +55,7 @@ class Search extends React.Component {
             //if backspace is hit it will reset everything
             this.setState({ query, results: {}, message: '' });
         } else {
-            this.setState({ query , message: '' }, () => {
+            this.setState({ query, message: '' }, () => {
                 //console.log(query)
                 this.fetchSearchResults(query);
             });
@@ -67,7 +65,6 @@ class Search extends React.Component {
     renderSearchResults = () => {
         //pull the results out of state
         const { results } = this.state;
-
         if (Object.keys(results).length && results.length) {
             //console.log(results)
             return (
@@ -109,7 +106,6 @@ class Search extends React.Component {
                 </label>
                 {/* rerror result */}
                 {message && <p className='message'>{message}</p>}
-
                 {/* results */}
                 {this.renderSearchResults()}
             </div>

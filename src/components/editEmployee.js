@@ -1,9 +1,7 @@
-import e from "cors";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import '../styles/CreateEmp.css'
-
 import leftImage from '../assets/happyEmp.jpg'
 
 export function EditEmployee() {
@@ -27,9 +25,10 @@ export function EditEmployee() {
                 setSalary(res.data.salary)
                 setPps(res.data.pps)
             })
-            .catch()
+            .catch(function (error) {
+                console.log(error);
+            });
     }, []);//we need to put an empty array because we want executed only once
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,18 +40,17 @@ export function EditEmployee() {
             pps: pps
         }
 
-
         //console.log(editEmployee);
         //will generate a HTTP request with the url + the id 
         axios.put('http://localhost:4000/api/employee/' + id, editEmployee)
-
             .then((res) => {
-
                 console.log(res);
                 //once the operation s susccesseful it will redirect to the read page
                 navigate('/showEmployees')
             })
-            .catch();
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     return (
@@ -60,11 +58,9 @@ export function EditEmployee() {
             <div
                 className='leftSide'
                 style={{ backgroundImage: `url(${leftImage})` }}
-
             ></div>
             <div className='rightSide'>
                 <h1> Edit an Employee </h1>
-
                 <form onSubmit={handleSubmit}>
                     <label>Full Name</label>
                     <input name="name"
@@ -105,13 +101,9 @@ export function EditEmployee() {
                         value={pps}
                         onChange={(e) => setPps(e.target.value)}
                     ></input>
-
-
                     <button type='submit'>Submit new details</button>
                 </form>
             </div>
         </div>
-
-
     )
 }

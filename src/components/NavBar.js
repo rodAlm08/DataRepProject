@@ -31,11 +31,8 @@ function NavBar() {
                 <button onClick={toggleNavBar}>
                     <ReorderIcon />
                 </button>
-
-
             </div>
         </div>
     )
 }
-
 export default NavBar

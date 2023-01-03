@@ -24,7 +24,6 @@ async function main() {
   //username admin
   //my password is admin
   await mongoose.connect('mongodb+srv://admin:admin@cluster0.qaq4ckt.mongodb.net/employees?retryWrites=true&w=majority');
-
 }
 
 //create the employee schema that will contain title, cover and author all in STRING type
@@ -39,7 +38,6 @@ const employeeSchema = new mongoose.Schema({
 //now we need to generate a model
 //its an object that will be used to interact to the database
 const employeeModel = mongoose.model('employees', employeeSchema);
-
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -59,7 +57,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
@@ -70,10 +67,7 @@ app.get('/api/employees', (req, res) => {
   //to interact to my database has to call the model
   employeeModel.find((error, data) => {
     res.json(data);
-
   })
-
-
 })
 
 //post will put the data embeded body
@@ -90,12 +84,8 @@ app.post('/api/employees', (req, res) => {
     address: req.body.address,
     salary: req.body.salary,
     pps: req.body.pps
-
   }).then(() => { res.status(201).send('Data Received') })
     .catch((error) => { res.status(500).send(error) })
-
-  res.send('Data received');
-
 })
 
 //to overide the methos
@@ -108,13 +98,9 @@ app.put('/api/employee/:id', (req, res) => {
     })
 })
 
-
-
-
 //will pass the id on the url : means that is a paramater I am passing up
 app.get('/api/employee/:id', (req, res) => {
   //console.log(req.params.id);
-
   //to search in database. FInd a document with the following id that was passed on the url
   //I don't have the front setup for this
   //to check go to localhost:4000/api/employees/ and paste the id
@@ -123,10 +109,9 @@ app.get('/api/employee/:id', (req, res) => {
   })
 })
 
-
 app.get('/api/employee/search/:id', (req, res) => {
-  console.log( "search " + this.props.employee._id);
-  employeeModel.find({id: req.params.id}, (error, data) => {
+  console.log("search " + this.props.employee._id);
+  employeeModel.find({ id: req.params.id }, (error, data) => {
     res.json(data);
     console.log(data);
   })
@@ -142,13 +127,11 @@ app.delete('/api/employee/:id', (req, res) => {
   })
 })
 
-
 //add at the bottom just over app.listen
 // Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/../../../build/index.html'));
-  });
-  
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../../../build/index.html'));
+});
 
 //the server is going to listen for a request for url on the port 4000
 //alway leave the port listen as the last on the page

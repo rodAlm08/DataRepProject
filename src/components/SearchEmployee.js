@@ -1,14 +1,11 @@
 import React from "react";
 import { Employees } from "./employees";
-
 import '../styles/Menu.css'
 import axios from "axios";// axios is a Promise based HTTP client
-
 
 //this component will be exported to be imported in App.js
 //React.component is class that has all the functionality to create components 
 export class SearchEmployee extends React.Component {
-
     //needs to bind the reloaddata into the constructor
     constructor() {
         super();
@@ -24,7 +21,6 @@ export class SearchEmployee extends React.Component {
                 this.setState({
                     employees: response.data
                 })
-
             })
             //in case thinks goes wrong
             .catch(function (error) {
@@ -42,17 +38,12 @@ export class SearchEmployee extends React.Component {
                 this.setState({
                     employees: response.data
                 })
-
             })
             //in case thinks goes wrong
             .catch(function (error) {
                 console.log(error);
             });
     }
-
-
-
-
     /* This state can be modified based on user action or other action. when a component
     state is changed React will re-render the component to the browser. Pass this read
     components state to the new employees component */
@@ -62,37 +53,29 @@ export class SearchEmployee extends React.Component {
         searchField: ''
     }
 
-    fetchEmployee = ()=>{
+    fetchEmployee = () => {
         axios.get('http://localhost:4000/api/employees')
-        //call back function
-        .then((response) => {
-            this.setState({
-                employees: response.data
+            //call back function
+            .then((response) => {
+                this.setState({
+                    employees: response.data
+                })
             })
-
-        })
-        //in case thinks goes wrong
-        .catch(function (error) {
-            console.log(error);
-        });
+            //in case thinks goes wrong
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     //employee will be embeded
     render() {
-        
         return (
-
-
             <div className="menu">
-                             
                 <div className="menuList">
-                
                     {/* in render this is sending it to Employees (got to Employees and load it there From parent to child) */}
                     <Employees employees={this.state.employees} ReloadData={this.ReloadData}></Employees>
-
                 </div>
             </div>
         );
     }
-
 }
