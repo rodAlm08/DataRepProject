@@ -16,8 +16,11 @@ class Search extends React.Component {
 
     //this method will fetch the data from my api
     fetchSearchResults = (query) => {
-        console.log(query)
-        const searchUrl = `http://localhost:4000/api/employee/search/:${query} `;        
+        
+        const searchUrl = `http://localhost:4000/api/employee/${query}`;  
+
+        //const searchUrl = `http://localhost:4000/api/employee/search/${query}`;  
+        console.log("fetch " + searchUrl)
         if (this.cancel) {
             // Cancel the previous request before making a new request
             this.cancel.cancel();

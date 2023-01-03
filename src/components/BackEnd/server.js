@@ -9,6 +9,14 @@ const bodyParser = require('body-parser') //it will parse the data
 //it will allow us to connect to my database
 const mongoose = require('mongoose');
 
+// Server Changes
+//server.js
+//add just under import section at the top of server,js
+// Serve the static files from the React app
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../../../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
 main().catch(err => console.log(err));//will make the connection with the database
 
 async function main() {
@@ -116,9 +124,9 @@ app.get('/api/employee/:id', (req, res) => {
 })
 
 
-app.get('/api/employee/search/:name', (req, res) => {
-  console.log(req.body.name);
-  employeeModel.find({ name: req.body.name}, (error, data) => {
+app.get('/api/employee/search/:id', (req, res) => {
+  console.log( "search " + this.props.employee._id);
+  employeeModel.find({id: req.params.id}, (error, data) => {
     res.json(data);
     console.log(data);
   })
@@ -135,12 +143,12 @@ app.delete('/api/employee/:id', (req, res) => {
 })
 
 
-
-
-
-
-
-
+//add at the bottom just over app.listen
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../../../build/index.html'));
+  });
+  
 
 //the server is going to listen for a request for url on the port 4000
 //alway leave the port listen as the last on the page
