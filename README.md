@@ -5,11 +5,11 @@
 Application developed using MERN stack Technology.
 
 ## To build the application
-Open command prompt inside project folder and run command
+Open command prompt inside project folder and run command:
 `npm run build`
 
 ## To start the application
-Inside BackEnd directory open integrated terminal and run command
+Inside BackEnd directory open integrated terminal and run command:
 `node server.js`
 
 ### To view the application
